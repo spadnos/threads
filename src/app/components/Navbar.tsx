@@ -12,13 +12,10 @@ const NAVLINKS = [
     href: "/",
   },
   {
-    label: "Server",
-    href: "/server",
+    label: "Dashboard",
+    href: "/dashboard",
   },
-  {
-    label: "Client",
-    href: "/client",
-  },
+
   {
     label: "About",
     href: "/about",
@@ -45,7 +42,7 @@ export default async function Navbar() {
   ) : null;
 
   return (
-    <nav className="bg-blue-800 p-4">
+    <nav className="bg-blue-800 p-4 ">
       <div className="flex justify-between items-center text-2xl font-bold">
         <div className="flex gap-8">
           {NAVLINKS.map((link) => {
