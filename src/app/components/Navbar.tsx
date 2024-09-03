@@ -6,11 +6,29 @@ const ACTIVE_ROUTE = "py-1 px-2 text-gray-300 bg-gray-700";
 const INACTIVE_ROUTE =
   "py-1 px-2 text-gray-500 hover:text-gray-300 hover:bg-gray-700";
 
+const NAVLINKS = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "Server",
+    href: "/server",
+  },
+  {
+    label: "Client",
+    href: "/client",
+  },
+  {
+    label: "About",
+    href: "/about",
+  },
+];
+
 export default async function Navbar() {
   const session = await getServerSession();
 
   const user = session?.user;
-  console.log(user);
 
   const userImage = user?.image ? (
     <div className="flex gap-4 items-center">
@@ -28,22 +46,17 @@ export default async function Navbar() {
 
   return (
     <nav className="bg-blue-800 p-4">
-      <ul className="flex justify-evenly items-center text-2xl font-bold">
-        <li>
-          <Link href="/">Home</Link>
-        </li>
-        <li>
-          <Link href="/server">Server</Link>
-        </li>
-        <li>
-          <Link href="/client">Client</Link>
-        </li>
-        <li>
-          <Link href="/extra">Extra</Link>
-        </li>
-        <li>
-          <Link href="/about">About</Link>
-        </li>
+      <div className="flex justify-between items-center text-2xl font-bold">
+        <div className="flex gap-8">
+          {NAVLINKS.map((link) => {
+            return (
+              <div key={link.label}>
+                <Link href={link.href}>{link.label}</Link>
+              </div>
+            );
+          })}
+        </div>
+
         {!session && (
           <div>
             <li>
@@ -53,7 +66,7 @@ export default async function Navbar() {
         )}
 
         {userImage}
-      </ul>
+      </div>
     </nav>
   );
 }
