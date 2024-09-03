@@ -1,49 +1,27 @@
-# "NextAuth.js Login Authentication"
+# NextJS Template App
 
-## With Next.js App Router
+Almost every app I want needs a few common things:
 
----
+- Authentication
+- A DB
 
-### Author Links
+This template has next-auth setup and some sample pages. It also has prisma as an ORM
+and zod for validation.
 
-👋 Hello, I'm Dave Gray.
+## Using the Tempalate
 
-👉 [My Courses](https://courses.davegray.codes/)
+After cloning this repo you will need to do several things to get things running:
 
-✅ [Check out my YouTube Channel with hundreds of tutorials](https://www.youtube.com/DaveGrayTeachesCode).
+### npm install
 
-🚩 [Subscribe to my channel](https://bit.ly/3nGHmNn)
+### Create .env file
 
-☕ [Buy Me A Coffee](https://buymeacoffee.com/DaveGray)
+This file should be at the top-level. It should contain:
 
-🚀 Follow Me:
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="next-auth secret"
 
-- [Twitter](https://twitter.com/yesdavidgray)
-- [LinkedIn](https://www.linkedin.com/in/davidagray/)
-- [Blog](https://yesdavidgray.com)
-- [Reddit](https://www.reddit.com/user/DaveOnEleven)
+GITHUB_ID="github-id"
+GITHUB_SECRET="github-secret"
 
----
-
-### Description
-
-📺 [YouTube Video](https://youtu.be/w2h54xz6Ndw) for this repository.
-
----
-
-### 🎓 Academic Honesty
-
-**DO NOT COPY FOR AN ASSIGNMENT** - Avoid plagiarism and adhere to the spirit of this [Academic Honesty Policy](https://www.freecodecamp.org/news/academic-honesty-policy/).
-
----
-
-### ⚙ Free Web Dev Tools
-- 🔗 [Google Chrome Web Browser](https://google.com/chrome/)
-- 🔗 [Visual Studio Code (aka VS Code)](https://code.visualstudio.com/)
-- 🔗 [ES7 React Snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
-
-### 📚 References
-- 🔗 [NextAuth.js Official Site](https://next-auth.js.org/)
-- 🔗 [Next.js Official Site](https://nextjs.org/)
-
-
+You will need to generate your own next-auth secret. This can be done using:
