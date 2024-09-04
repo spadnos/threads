@@ -2,12 +2,13 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar";
 import AuthProvider from "./context/AuthProvider";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "NextAuth Tutorial",
-  description: "Learn NextAuth.js by Dave Gray",
+  title: "SeetulaComments",
+  description: "Playground for testing comment threads.",
 };
 
 export default function RootLayout({
@@ -17,13 +18,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} container`}>
+      <body className="min-h-screen bg-background font-sans antialiased">
         <AuthProvider>
-          <div className="container mx-auto">
+          <div className="container mx-auto flex flex-col h-screen">
             <Navbar />
-            <main className="flex justify-center items-start p-6 min-h-screen">
+            <main className="container mb-auto mx-auto max-w-7xl pt-8 px-6 flex-grow">
               {children}
             </main>
+            <footer className="h-10 flex justify-center py-3">
+              Copyright &copy; 2024 Seetula
+            </footer>
+
+            <Toaster />
           </div>
         </AuthProvider>
       </body>
