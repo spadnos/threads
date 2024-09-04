@@ -17,7 +17,6 @@ type Props = {
 export default function ThreadCard({ thread }: Props) {
   const [state, action] = useFormState(handleSubmit, undefined);
 
-  // const comments = fetchComments(thread.id);
   const [showForm, setShowForm] = useState<boolean>(false);
 
   function handleSubmit(state: FormState, formData: FormData) {
@@ -28,7 +27,7 @@ export default function ThreadCard({ thread }: Props) {
   }
 
   return (
-    <div className="border-1 border-black shadow-md flex flex-col gap-4">
+    <div className="border-1 border-black shadow-md flex flex-col gap-4 pb-2">
       <h2 className="bg-slate-200">Thread: {thread.id}</h2>
       {showForm && (
         <div>
@@ -42,15 +41,17 @@ export default function ThreadCard({ thread }: Props) {
         </div>
       )}
       {!showForm && (
-        <LucidePlusSquare
-          className=""
-          size={36}
-          onClick={() => {
-            setShowForm(true);
-          }}
-        />
+        <div className=" mx-4 flex justify-between">
+          <span>{thread.comments?.length} comments</span>
+          <LucidePlusSquare
+            className=""
+            size={36}
+            onClick={() => {
+              setShowForm(true);
+            }}
+          />
+        </div>
       )}
-      <span>{thread.comments?.length} comments</span>
       {thread.comments?.map((comment) => (
         <CommentCard key={comment.id} comment={comment} />
       ))}

@@ -8,6 +8,10 @@ type Props = {
 };
 
 export default function CommentCard({ comment }: Props) {
+  if (!comment) {
+    return null;
+  }
+
   const userImage = comment.user?.image ? (
     <Image
       className="border-4 border-black dark:border-slate-500 drop-shadow-xl shadow-black rounded-full mx-auto mt-8"
