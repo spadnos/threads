@@ -1,11 +1,13 @@
 import Image from "next/image";
 import { CommentType } from "../lib/types";
+import { User } from "lucide-react";
+import TimeAgo from "react-timeago";
 
 type Props = {
   comment: CommentType;
 };
 
-export default function Card({ comment }: Props) {
+export default function CommentCard({ comment }: Props) {
   const userImage = comment.user?.image ? (
     <Image
       className="border-4 border-black dark:border-slate-500 drop-shadow-xl shadow-black rounded-full mx-auto mt-8"
@@ -15,16 +17,18 @@ export default function Card({ comment }: Props) {
       alt={comment.user?.username ?? "Profile Pic"}
       priority={true}
     />
-  ) : null;
+  ) : (
+    <User />
+  );
 
   return (
-    <section className="flex flex-col gap-4">
-      <div className="flex gap-4">
+    <section className="flex flex-col gap-4 border-2 border-slate-400 p-2 rounded-md shadow-md">
+      <div className="flex gap-4 ">
         {userImage}
-        <div>username</div>
-        <div>xx days ago</div>
+        <div>{comment.user.username}</div>
+        <TimeAgo date={comment.createdAt} />
       </div>
-      <p className="text-2xl text-center">{comment.text}</p>
+      <p className="text-left">{comment.text}</p>
     </section>
   );
 }

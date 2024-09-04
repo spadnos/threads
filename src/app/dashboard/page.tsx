@@ -1,6 +1,6 @@
 import { options } from "../api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth/next";
-import { createThread, fetchThreads } from "../lib/comments/actions";
+import { createComment, createThread, fetchThreads } from "../actions/comments";
 import CreateThread from "../components/create-thread";
 import ThreadCard from "../components/thread-card";
 import { revalidatePath } from "next/cache";
@@ -16,6 +16,14 @@ export default async function ServerPage() {
     await createThread();
     revalidatePath("/dashboard");
   };
+
+  // async function handleNewComment(formData: FormData) {
+  //   "use server";
+  //   await createComment({
+  //     text: formData.get("text")?.toString(),
+  //     threadId: formData.get("threadId")?.toString(),
+  //   });
+  // }
 
   return (
     <section className="flex flex-col items-center gap-6">

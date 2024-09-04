@@ -7,6 +7,7 @@ export interface UserType {
 
 export interface ThreadType {
   id: string;
+  comments?: CommentType[];
 }
 
 export interface CommentType {
@@ -15,4 +16,5 @@ export interface CommentType {
   user: UserType;
   userId: string;
   threadId: string;
+  createdAt: Date;
 }
