@@ -1,6 +1,8 @@
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import Image from "next/image";
+import Logo from "@/components/navbar/logo";
+import DarkMode from "@/components/navbar/dark-mode";
 
 const ACTIVE_ROUTE = "py-1 px-2 text-gray-300 bg-gray-700";
 const INACTIVE_ROUTE =
@@ -8,12 +10,7 @@ const INACTIVE_ROUTE =
 
 const NAVLINKS = [
   {
-    label: "Home",
-    href: "/",
-    protected: false,
-  },
-  {
-    label: "Dashboard",
+    label: "Threads",
     href: "/dashboard",
     protected: true,
   },
@@ -30,6 +27,8 @@ export default async function Navbar() {
 
   const user = session?.user;
 
+  // userImage is really the signin/signout links. If the user is signed in it will also
+  // include their avatar.
   const userImage = user?.image ? (
     <div className="flex gap-4 items-center">
       <Link href="/api/auth/signout">Sign Out</Link>
@@ -42,14 +41,19 @@ export default async function Navbar() {
         priority={true}
       />
     </div>
-  ) : null;
+  ) : (
+    <div>
+      <Link href="/api/auth/signin">Sign In</Link>
+    </div>
+  );
 
   return (
-    <nav className="bg-blue-800 p-4 ">
-      <div className="flex justify-between items-center text-2xl font-bold">
-        <div className="flex gap-8">
+    <nav className="border-b">
+      <div className="container flex flex-wrap gap-4 py-4 sm:items-center justify-between text-lg font-semibold">
+        <div className="flex gap-8 items-center">
+          <Logo appname="threads" />
           {NAVLINKS.map((link) => {
-            if (link.protected) {
+            if (!session && link.protected) {
               return null;
             }
             return (
@@ -59,14 +63,10 @@ export default async function Navbar() {
             );
           })}
         </div>
-
-        {!session && (
-          <div>
-            <Link href="/api/auth/signin">Sign In</Link>
-          </div>
-        )}
-
-        {userImage}
+        <div className="flex gap-8 items-center">
+          <DarkMode />
+          {userImage}
+        </div>
       </div>
     </nav>
   );
