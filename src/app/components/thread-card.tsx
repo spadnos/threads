@@ -28,7 +28,7 @@ export default function ThreadCard({ thread }: Props) {
 
   return (
     <div className="border-1 border-black shadow-md flex flex-col gap-4 pb-2">
-      <h2 className="bg-slate-200">Thread: {thread.id}</h2>
+      <h2 className="bg-secondary">Thread: {thread.id}</h2>
       {showForm && (
         <div>
           <LucideMinusSquare

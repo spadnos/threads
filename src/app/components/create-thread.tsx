@@ -1,21 +1,22 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 function CreateThread({ createThread }: { createThread: () => void }) {
   const { toast } = useToast();
   return (
-    <button
-      className="border-2 border-black rounded-md bg-slate-400 py-1 px-2"
+    <Button
+      className=""
       onClick={async () => {
-        await createThread();
+        createThread();
         toast({
           title: "Thread added.",
         });
       }}
     >
       Create Thread
-    </button>
+    </Button>
   );
 }
 export default CreateThread;

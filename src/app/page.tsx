@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { options } from "./api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth/next";
+import { Button } from "@/components/ui/button";
 
 export default async function Home() {
   const session = await getServerSession(options);
@@ -18,11 +19,8 @@ export default async function Home() {
         <div className="mt-16 flex flex-col items-center">
           <p className="text-lg font-semibold">Sign in to get started!</p>
           <div className="mt-6">
-            <Link
-              href="/api/auth/signin"
-              className="px-4 py-2 text-center text-2xl border-2 border-black rounded-lg"
-            >
-              Sign In
+            <Link href="/api/auth/signin" className="">
+              <Button size="lg">Sign In</Button>
             </Link>
           </div>
         </div>
