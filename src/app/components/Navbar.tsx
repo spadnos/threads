@@ -10,15 +10,18 @@ const NAVLINKS = [
   {
     label: "Home",
     href: "/",
+    protected: false,
   },
   {
     label: "Dashboard",
     href: "/dashboard",
+    protected: true,
   },
 
   {
     label: "About",
     href: "/about",
+    protected: false,
   },
 ];
 
@@ -46,6 +49,9 @@ export default async function Navbar() {
       <div className="flex justify-between items-center text-2xl font-bold">
         <div className="flex gap-8">
           {NAVLINKS.map((link) => {
+            if (link.protected) {
+              return null;
+            }
             return (
               <div key={link.label}>
                 <Link href={link.href}>{link.label}</Link>
@@ -56,9 +62,7 @@ export default async function Navbar() {
 
         {!session && (
           <div>
-            <li>
-              <Link href="/api/auth/signin">Sign In</Link>
-            </li>
+            <Link href="/api/auth/signin">Sign In</Link>
           </div>
         )}
 
